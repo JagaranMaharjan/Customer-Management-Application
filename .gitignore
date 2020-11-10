@@ -121,6 +121,7 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
+accounts/queryDemo.py
 
 # Spyder project settings
 .spyderproject
