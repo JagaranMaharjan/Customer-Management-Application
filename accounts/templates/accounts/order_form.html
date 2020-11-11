@@ -1,0 +1,26 @@
+{% extends 'accounts/main.html' %}
+<!-- start to load static folder -->
+{% load static %}
+<!-- start to display body content -->
+{% block content %}
+    <br>
+    <!-- Display Order Form with required field -->
+    <div class="row p-3">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        {{ form }}
+                        <hr>
+                    {% endfor %}
+                    {{ form }}
+                    <input type="submit" name="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End To Display Order Form -->
+{% endblock %}
+<!-- end to display body content -->

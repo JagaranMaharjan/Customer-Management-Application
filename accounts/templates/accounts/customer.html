@@ -9,7 +9,7 @@
                 <h5>Customer:</h5>
                 <hr>
                 <a class="btn btn-outline-info btn-sm btn-block" href="#">Update Customer</a>
-                <a class="btn btn-outline-danger btn-sm btn-block" href="#">Delete Customer</a>
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'create_order' customer.id %}">Place Order</a>
             </div>
         </div>
         <!-- End of Customer Info Action -->
@@ -39,7 +39,8 @@
     <div class="row p-3">
         <div class="col-md">
             <div class="card card-body">
-                <form action="#" method="get">
+                <form method="get">
+                    {{ myFilter.form }}
                     <button class="btn btn-primary" type="submit">Search</button>
                 </form>
             </div>
@@ -54,22 +55,27 @@
                 <table class="table table-sm">
                     <tr>
                         <th>Product</th>
-                        <th>Category</th>
+                        <th>Note</th>
                         <th>Date Ordered</th>
                         <th>Status</th>
                         <th>Update</th>
                         <th>Remove</th>
                     </tr>
+                    <!-- Display Order Data -->
                     {% for order in orders %}
                         <tr>
-                        <td>{{ order.product }}</td>
-                        <td>{{ order.product.category }}</td>
-                        <td>{{ order.date_created }}</td>
-                        <td>{{ order.status }}</td>
-                        <td><a href="#" class="btn btn-sm btn-info">Update</a></td>
-                        <td><a href="#" class="btn btn-sm btn-danger">Delete</a></td>
+                            <td>{{ order.product }}</td>
+                            <td>{{ order.note }}</td>
+                            <td>{{ order.date_created }}</td>
+                            <td>{{ order.status }}</td>
+                            <!-- Update Order -->
+                            <td><a href="{% url 'update_order' order.id %}" class="btn btn-sm btn-info">Update</a></td>
+                            <!-- Delete Order -->
+                            <td><a href="{% url 'delete_order' order.id %}" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
                         </tr>
                     {% endfor %}
+                    <!-- End To Display Order Data -->
                 </table>
             </div>
         </div>
