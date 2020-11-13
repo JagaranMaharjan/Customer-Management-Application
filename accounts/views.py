@@ -153,7 +153,7 @@ def customer(request, pk_test):
 
 # create order
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['admin', 'customer'])
 def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=['product', 'status'], extra=5)
     customer = Customer.objects.get(id=pk)
@@ -182,7 +182,7 @@ def createOrder(request, pk):
 
 # update order
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['admin', 'customer'])
 def updateOrder(request, pk):
     # return order details according to order id
     order = Order.objects.get(id=pk)
@@ -205,7 +205,7 @@ def updateOrder(request, pk):
 
 # delete order for forever
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['admin', 'customer'])
 def deleteOrder(request, pk):
     # return order details according to order id
     order = Order.objects.get(id=pk)
